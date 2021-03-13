@@ -7,19 +7,31 @@ import {
 } from 'react-router-dom'
 
 
-const products = [
+const fetchedProducts = [
   {id: 1, name: 'Name'}
 ]
 
-const inventory = [
-  {id: 1, type: '', quantity: 1, product: products[0]}
+const fetchedInventory = [
+  {id: 1, type: '', quantity: 1, product: fetchedProducts[0]}
 ]
 
+function ProductComponent(props) {
+  console.log("ProductComponent props", props)
+  const productName = props.products[0].name
+  console.log("ProductComponent productName", productName)
+
+  return (
+    <p>Name: {productName}</p>
+  )
+}
 class App extends Component {
   render() {
     return (
       <div className="App">
       Hello
+      <ProductComponent 
+      products={fetchedProducts} 
+      fetchedInventory={fetchedInventory} />
       </div>
     );
   }
