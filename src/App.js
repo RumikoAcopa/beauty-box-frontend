@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import InventoryTable from './components/InventoryTable.js'
 import {
   BrowserRouter as Router,
   Switch,
@@ -8,28 +9,27 @@ import {
 
 
 const fetchedProducts = [
-  {id: 1, name: 'Name'}
+  {id: 1, name: 'Facial Cleanser'},
+  {id: 2, name: 'Facial Toner'}
+
 ]
 
 const fetchedInventory = [
-  {id: 1, type: '', quantity: 1, product: fetchedProducts[0]}
+  {id: 1, type: 'add', quantity: 1, product: fetchedProducts[0]},
+  {id: 2, type: 'remove', quantity: -20, product: fetchedProducts[0]},
+  {id: 1, type: 'add', quantity: 10, product: fetchedProducts[1]},
+  {id: 2, type: 'remove', quantity: -5, product: fetchedProducts[1]}
+
 ]
 
-function ProductComponent(props) {
-  console.log("ProductComponent props", props)
-  const productName = props.products[0].name
-  console.log("ProductComponent productName", productName)
 
-  return (
-    <p>Name: {productName}</p>
-  )
-}
 class App extends Component {
   render() {
     return (
       <div className="App">
+        <h1>This Inventory App</h1>
       Hello
-      <ProductComponent 
+      <InventoryTable 
       products={fetchedProducts} 
       fetchedInventory={fetchedInventory} />
       </div>
