@@ -1,5 +1,5 @@
 * {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Helvetica, sans-serif;
 }
 
 .App {
@@ -9,8 +9,8 @@
 }
 
 .InventoryTable__Card {
-  margin: 12px;
-  border: 2px solid #eee;
+  margin: 12px 0;
+  border: 2px solid rgb(51, 47, 47);
   border-radius: 3px;
   padding: 24px;
 }
