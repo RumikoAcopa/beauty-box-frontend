@@ -14,6 +14,7 @@ import ProductForm from "./containers/ProductForm.js";
 import ProductListContainer from "./containers/ProductListContainer.js";
 import WelcomePage from "./components/WelcomePage";
 import Nav from "./components/Nav";
+import ProductShowContainer from "./containers/ProductShowContainer";
 
 class App extends React.Component {
   render() {
@@ -55,14 +56,14 @@ class App extends React.Component {
           <Switch>
             <Route exact path='/' component={WelcomePage} />
 
-            <Route path='/products/:id'>
-              <ProductList />
+            <Route path='/products/:productId'>
+              <ProductShowContainer />
               Product List
             </Route>
 
             <Route path='/products'>
               <ProductForm />
-              New Product
+             
             </Route>
 
             <Route
