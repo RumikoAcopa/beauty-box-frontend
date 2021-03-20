@@ -19,7 +19,7 @@ export default class GroupFormContainer extends Component {
         Accept: "application/json",
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({ group: this.state })
+      body: JSON.stringify({ category: this.state })
     })
       .then((res) => res.json())
       .then((productJson) => {
@@ -37,6 +37,7 @@ export default class GroupFormContainer extends Component {
           
         </h1>
         <fieldset>
+
           <input
             type='text'
             name='name'
@@ -44,13 +45,16 @@ export default class GroupFormContainer extends Component {
             placeholder='Name your category'
             className='w-full border p-4 my-4'
           />
+          
         </fieldset>
+
         <button
           className='w-full p-4 bg-blue-300 mt-4 hover:bg-blue-400 transition-all duration-200'
           type='submit'
         >
           Add Category
         </button>
+
       </form>
     );
   }
