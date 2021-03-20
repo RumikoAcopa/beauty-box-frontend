@@ -1,82 +1,85 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 
-function ProductForm() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
+export default class ProductForm extends Component {
+  state = {
+    name: "",
+    quantity: "",
+    details: ""
+  };
+
+  handleChange = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  };
+
+  handleSubmit = (e) => {
+    e.preventDefault();
     fetch("http://localhost:3001/products", {
-      method: "post",
+      method: "POST",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        product: {
-          name: document.getElementById("name").value,
-          quantity: document.getElementById("quantity").value,
-          details: document.getElementById("details").value,
-          
-        }
+        product: this.state
       })
-    }).then((response) => {
-      if (response.ok) {
-        alert("You have submitted the form.");
-        document.getElementById("new_product").reset();
-      } else {
-        alert("form submission failed ");
-        return response.text().then((error) => Promise.reject(error));
-      }
-    });
+    })
+      .then((res) => res.json())
+      .then((productJson) => {
+        this.props.history.push("/products");
+      });
   };
-  return (
-    <div className='Product_Form'>
-      <h1>Add a new product</h1>
-      <form onSubmit={handleSubmit} id='new_product'>
-        <fieldset className='Product_Form_Name'>
-          <label htmlFor='name' className='block uppercase'>
-            Name
-          </label>
+
+  render() {
+    return (
+      <form
+        onSubmit={this.handleSubmit}
+        className='max-w-6xl mt-16 w-4/6 mx-auto shadow-lg'
+      >
+        <fieldset>
+          <h1 className='w-full p-4 bg-blue-300 mt-4 text-center text-3xl font-semibold mb-2'>
+            New Product
+          </h1>
+
           <input
             type='text'
             name='name'
-            id='name'
-            className='w-full border-2 p-4 my-4'
+            onChange={this.handleChange}
+            value={this.state.name}
+            placeholder='name'
+            className='w-full boder p-4 my-4'
           />
-        </fieldset>
-        <fieldset className='Product_Form_Quantity'>
-          <label htmlFor='quantity' className='block uppercase'>
-            Quantity
-          </label>
-          <textarea
-            className='w-full border-2 p-4 my-4'
-            name='quantity'
-            id='quantity'
-          ></textarea>
-        </fieldset>
-        <fieldset className='Product_Form_Details'>
-          <label htmlFor='start_time' className='block uppercase'>
-            Category
-          </label>
+
           <input
-            type='details' 
+            type='integer'
+            name='quantity'
+            onChange={this.handleChange}
+            value={this.state.quantity}
+            placeholder='quantity'
+            className='w-full boder p-4 my-4'
+          />
+
+          <input
+            type='text'
             name='details'
-            id='details'
-            className='w-full border-2 p-4 my-4'
+            onChange={this.handleChange}
+            value={this.state.details}
+            placeholder='details'
+            className='w-full boder p-4 my-4'
           />
         </fieldset>
-        <button type='submit'>Submit</button>
+        <button
+          className='w-full p-4 bg-blue-300 mt-4 hover:bg-blue-400 transition-all duration-200'
+          type='submit'
+        >
+          {" "}
+          Add Product
+        </button>
       </form>
-    </div>
-  );
+    );
+  }
 }
-export default ProductForm;
-
-
-
-
-
-
-
-
 
 // export default class ProductForm extends Component {
 //   state = {
@@ -98,8 +101,7 @@ export default ProductForm;
 //       body.append("event[name]", form.name.value);
 //       body.append("event[quantity]", form.quantity.value);
 //       body.append("event[detail]", form.detail.value);
-      
-    
+
 //     fetch("http://localhost:3001/products", {
 //       method: "POST",
 //       headers: {
@@ -139,4 +141,3 @@ export default ProductForm;
 //     );
 //   }
 // }
-
