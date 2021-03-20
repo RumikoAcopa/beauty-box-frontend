@@ -4,10 +4,10 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  NavLink
+  Link
 } from "react-router-dom";
 
-import CategoryList from "./components/CategoryList.js";
+
 import ProductList from "./components/ProductList.js";
 import CategoryForm from "./containers/CategoryForm.js";
 import ProductForm from "./containers/ProductForm.js";
@@ -61,9 +61,7 @@ class App extends React.Component {
               Product List
             </Route>
 
-            <Route path='/products'>
-              <ProductForm />
-             
+            <Route path='/products/new' component={ProductForm}> 
             </Route>
 
             <Route
@@ -71,13 +69,13 @@ class App extends React.Component {
               component={ProductListContainer}
             />
 
-            <Route path='/categories'>
-              <CategoryForm />
+            <Route path='/categories' component={CategoryForm}>
+          
               New Category
             </Route>
 
             <Route path='/categories/id'>
-              <CategoryList />
+              
               Category List
             </Route>
           </Switch>
