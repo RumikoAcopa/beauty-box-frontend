@@ -10,7 +10,7 @@ export default class ProductListContainer extends Component {
   componentDidMount() {
     // we'd probably want to store the API_URL in an environment variable
     // so this would work in deployment as well but for now we'll hard code the hostname
-    fetch("http://localhost:3000/products", {
+    fetch("http://localhost:3001/products", {
       method: "get",
       headers: {
         Accept: "application/json",
