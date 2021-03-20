@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Link } from "react-router-dom";
+
 
 export default class ProductShowContainer extends Component {
   state = {
@@ -20,16 +22,19 @@ export default class ProductShowContainer extends Component {
     return (
       <section className='Product_Show_Container max-w-6xl w-11/12 mx-auto mt-16'>
         <h1 className='Product_Show_H1 text-3xl font-bold text-center'>
-          {this.state.group.name}
+          {this.state.product.name}
         </h1>
+        <p className='my-2'>
+          <Link to={`/products/${this.state.product.id}/category/new`}>
+            Add an Event
+          </Link>
+        </p>
         <div className='Product_Show_Div grid grid-cols-3'>
-          {this.state.events.map((event) => (
+          {this.state.products.map((product) => (
             <figure>
-              
               <h2>{product.name}</h2>
               <p>{product.quantity}</p>
               <p>{product.details}</p>
-              
             </figure>
           ))}
         </div>
