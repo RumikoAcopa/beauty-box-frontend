@@ -5,6 +5,8 @@ import {
   SUCCESS_LOADING_PRODUCT_CATEGORIES
 } from "./index";
 
+
+
 //this fetch for index container...dbl check it's for the right file!
 export const fetchProducts = () => {
 
@@ -31,11 +33,11 @@ export const fetchProducts = () => {
 }
 
 
-export const fetchProducts = (productId) => {
+export const fetchProductId = (productId) => {
   return (dispatch) => {
     dispatch({ type: START_LOADING_PRODUCT, payload: productId })
   
-    fetch(`http://localhost:3001/products/{productId}`)
+    fetch(`http://localhost:3001/products/${productId}`)
       .then((res) => res.json())
       .then(({ productCategoriesJson }) => {
         dispatch({
