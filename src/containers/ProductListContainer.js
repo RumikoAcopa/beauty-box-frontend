@@ -1,14 +1,13 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { fetchProducts } from '../actions/products';
-
-import ProductList from "../components/ProductList";
+//import ProductList from "../components/ProductList";
 
 class ProductListContainer extends Component {
   
 
   componentDidMount() {
-    this.props.fetchProducts;
+    this.props.dispatch.fetchProducts();
   }
 
 
