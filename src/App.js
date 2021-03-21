@@ -4,7 +4,7 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
+  //Link 
 } from "react-router-dom";
 
 
@@ -24,34 +24,6 @@ class App extends React.Component {
 
         <Router>
           <Nav />
-          {/* <nav className='text-center bg-blue-900 text-yellow-100 p-4'>
-            <NavLink
-              className='inline-block px-4 py-2'
-              activeClassName='text-yellow-300'
-              exact
-              to='/'
-            >
-              Home
-            </NavLink>
-
-            <NavLink
-              className='inline-block px-4 py-2'
-              activeClassName='text-yellow-300'
-              exact
-              to='/products'
-            >
-              New Product
-            </NavLink>
-
-            <NavLink
-              className='inline-block px-4 py-2'
-              activeClassName='text-yellow-300'
-              exact
-              to='/categories/new'
-            >
-              New Category
-            </NavLink>
-          </nav> */}
 
           <Switch>
             <Route exact path='/' component={WelcomePage} />
@@ -61,7 +33,11 @@ class App extends React.Component {
               Product List
             </Route>
 
-            <Route path='/products/new' component={ProductForm}> 
+            <Route path='/products/new' component={ProductForm}></Route>
+
+            <Route path='/products/show'>
+              <ProductList />
+              Product List
             </Route>
 
             <Route
@@ -70,14 +46,10 @@ class App extends React.Component {
             />
 
             <Route path='/categories' component={CategoryForm}>
-          
               New Category
             </Route>
 
-            <Route path='/categories/id'>
-              
-              Category List
-            </Route>
+            <Route path='/categories/id'>Category List</Route>
           </Switch>
         </Router>
       </div>
