@@ -4,5 +4,5 @@ import categoryReducer from "./category"
 
 export default combineReducers({
   products: productsReducer,
-  categories: categoryReducer
+  category: categoryReducer
 });
