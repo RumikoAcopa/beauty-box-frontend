@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { fetchProduct } from '../actions/products';
+import { fetchProductId } from "../actions/products";
+
 
 
 class ProductShowContainer extends Component {
-  state = {
-    product: {},
-    category: [],
-    loading: true
-  };
+  
 
   componentDidMount() {
 
@@ -39,15 +36,14 @@ class ProductShowContainer extends Component {
           </h1>
           <p className='my-2'>
             <Link to={`/products/${this.props.product.id}/category/new`}>
-              Add an Event
+              Add a Category
             </Link>
           </p>
           <div className='Product_Show_Div grid grid-cols-3'>
-            {this.props.products.map((product) => (
+            {this.props.categories.map((category) => (
               <figure>
-                <h2>{product.name}</h2>
-                <p>{product.quantity}</p>
-                <p>{product.details}</p>
+                <h2>{category.name}</h2>
+                
               </figure>
             ))}
           </div>
@@ -61,8 +57,8 @@ const mapStateToProps = (state, { match }) => {
   const productId = match.params.productId
   let loadingState = state.categories.productsLoaded[productId] || "not_started"
   return {
-    product: state.products.list.find(p => p.id == productId),
-    categories: state.categories.list.filter(event => event.product_id == productId),
+    product: state.products.list.find(p => p.id === productId),
+    categories: state.categories.list.filter(category => category.product_id === productId),
     loadingState 
   }
 }
@@ -70,7 +66,8 @@ const mapStateToProps = (state, { match }) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    dispatchFetchProduct: (productId) => dispatch(fetchProduct(productId)),
+    dispatchFetchProduct: (productId) => dispatch(fetchProductId(productId)),
+    
   }
 }
 
