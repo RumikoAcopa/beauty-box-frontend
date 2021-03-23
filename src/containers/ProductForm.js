@@ -1,10 +1,12 @@
 import React, { Component } from "react";
-
-export default class ProductForm extends Component {
+import { connect } from "react-redux";
+import {createProduct} from "../actions/products"
+class ProductForm extends Component {
   state = {
     name: "",
     quantity: "",
-    details: ""
+    details: "",
+    errors: ""
   };
 
   handleChange = (e) => {
@@ -15,20 +17,15 @@ export default class ProductForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    fetch("http://localhost:3001/products", {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        product: this.state
+    this.props.dispatchCreateProduct(this.state)
+      .then(productJson => {
+        this.props.history.push("/products");
+    })
+    .catch(errors => {
+      this.setState({
+        errors
       })
     })
-      .then((res) => res.json())
-      .then((productJson) => {
-        this.props.history.push("/products");
-      });
   };
 
   render() {
@@ -38,6 +35,7 @@ export default class ProductForm extends Component {
         className='max-w-6xl mt-16 w-4/6 mx-auto shadow-lg'
       >
         <fieldset>
+          <p className='Error h-8 text-red-400'>{this.state.errors.name}</p>
           <h1 className='w-full p-4 bg-blue-300 mt-4 text-center text-3xl font-semibold mb-2'>
             New Product
           </h1>
@@ -66,7 +64,7 @@ export default class ProductForm extends Component {
             onChange={this.handleChange}
             value={this.state.details}
             placeholder='details'
-            className='w-full boder p-4 my-4'
+            className={`w-full border-2 p-4 mb-4 ${this.state.errors.name && 'border-red-400'}`}
           />
         </fieldset>
         <button
@@ -80,6 +78,15 @@ export default class ProductForm extends Component {
     );
   }
 }
+
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    dispatchCreateProduct: (formData) => dispatch(createProduct(formData))
+  }
+}
+
+export default connect(null, mapDispatchToProps)(ProductForm);
 
 // export default class ProductForm extends Component {
 //   state = {
