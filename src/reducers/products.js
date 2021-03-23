@@ -1,19 +1,19 @@
 import {
-  ADD_PRODUCTS,
   START_LOADING_PRODUCTS,
-  START_LOADING_PRODUCT,
   SUCCESS_LOADING_PRODUCTS,
-  ERROR_LOADING_PRODUCTS,
-  SUCCESS_LOADING_PRODUCT_CATEGORIES
+  SUCCESS_LOADING_PRODUCT_CATEGORIES,
+  SUCCESSFULLY_CREATED_PRODUCT,
 } from "../actions";
 
 const defaultState = {
   loadingState: "notStarted",
-  list: []
+  list: [],
 };
 
 export default function productsReducer(state = defaultState, action) {
+
   switch (action.type) {
+
     case START_LOADING_PRODUCTS:
       return { ...state, loadingState: "inProgress" };
 
@@ -25,7 +25,7 @@ export default function productsReducer(state = defaultState, action) {
 
     case SUCCESS_LOADING_PRODUCT_CATEGORIES:
       const foundProduct = state.list.find(
-        (product) => product.id == action.payload.product.id
+        (product) => product.id === action.payload.product.id
       );
 
       if (foundProduct) {
@@ -33,9 +33,16 @@ export default function productsReducer(state = defaultState, action) {
       } else {
         return {
           ...state,
-          list: state.list.concat(action.payload.product)
+          list: state.list.concat(action.payload.product),
+          productsloadingState: "successful"
         };
       }
+
+    case SUCCESSFULLY_CREATED_PRODUCT:
+      return {
+        ...state,
+        list: state.list.concat(action.payload),
+      };
 
     default:
       return state;
