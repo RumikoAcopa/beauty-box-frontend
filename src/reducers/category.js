@@ -17,9 +17,18 @@ export default function categoryReducer(state = initialState, action) {
       }
     case SUCCESS_LOADING_PRODUCT_CATEGORIES:
       return {
-        productsLoaded: {...state.productsLoaded, [action.payloaded.product.id]: 'successful'},
-        list: [...state.list.concat(action.payload.categories)]
-      }
+        productsLoaded: {
+          ...state.productsLoaded,
+          [action.payloaded.product.id]: "successful"
+        },
+        list: [
+          ...state.list
+            .filter(
+              (category) => category.product_id !== action.payloaded.product.id
+            )
+            .concat(action.payload.categories)
+        ]
+      };
     default:
       return state
   }
