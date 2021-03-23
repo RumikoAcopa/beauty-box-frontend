@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from 'react';
 
 import {
   BrowserRouter as Router,
@@ -7,54 +7,52 @@ import {
   //Link 
 } from "react-router-dom";
 
-
-import ProductList from "./components/ProductList.js";
 import CategoryForm from "./containers/CategoryForm.js";
 import ProductForm from "./containers/ProductForm.js";
 import ProductListContainer from "./containers/ProductListContainer.js";
-import WelcomePage from "./components/WelcomePage";
 import Nav from "./components/Nav";
 import ProductShowContainer from "./containers/ProductShowContainer";
 
-class App extends React.Component {
-  render() {
-    return (
-      <div className='App'>
-        <h1>Beauty-Inventory-App</h1>
+function App() {
+  
+  return (
+    <div className='App'>
+      <h1>Beauty-Inventory-App</h1>
+      <Router>
+        <Nav />
+        <Switch>
+          
+          <Route exact path='/'>
+            <ProductListContainer />
+          </Route>
 
-        <Router>
-          <Nav />
+          <Route path='/products/:id'>
+            <ProductShowContainer />
+            Product List 
+          </Route>
 
-          <Switch>
-            <Route exact path='/' component={WelcomePage} />
+          <Route path='/products/new' component={ProductForm}></Route>
 
-            <Route path='/products/:productId'>
-              <ProductShowContainer />
-              Product List
-            </Route>
+          {/* <Route path='/products/show'>
+            <ProductList />
+            Product List
+          </Route> */}
 
-            <Route path='/products/new' component={ProductForm}></Route>
+          <Route
+            path='/products/:productId/categories/new'
+            component={ProductListContainer}
+          />
 
-            <Route path='/products/show'>
-              <ProductList />
-              Product List
-            </Route>
+          <Route path='/categories' component={CategoryForm}>
+            New Category
+          </Route>
 
-            <Route
-              path='/products/:productId/categories/new'
-              component={ProductListContainer}
-            />
-
-            <Route path='/categories' component={CategoryForm}>
-              New Category
-            </Route>
-
-            <Route path='/categories/id'>Category List</Route>
-          </Switch>
-        </Router>
-      </div>
-    );
-  }
+          <Route path='/categories/id'>Category List</Route>
+        </Switch>
+      </Router>
+    </div>
+  );
+  
 }
 export default App;
 
