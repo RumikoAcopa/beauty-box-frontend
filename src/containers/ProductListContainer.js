@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { fetchProducts } from '../actions/products';
-//import ProductList from "../components/ProductList";
+import ProductList from "../components/ProductList";
 
 class ProductListContainer extends Component {
   
 
   componentDidMount() {
-    this.props.dispatch.fetchProducts();
+    this.props.dispatchFetchProducts();
   }
 
 
@@ -20,12 +20,11 @@ class ProductListContainer extends Component {
         {this.props.loadingState ==='inProgress' ? (
           "loading spinner"
         ) : (
-          <ProductListContainer products={this.props.products} />
+          <ProductList products={this.props.products} />
         )}
       </section>
     );
-  }
-  
+  } 
 }
 
 const mapStateToProps = (state) => {
@@ -37,8 +36,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchProducts: () => dispatch(fetchProducts())
+    dispatchFetchProducts: () => dispatch(fetchProducts())
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProductListContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(ProductListContainer);
