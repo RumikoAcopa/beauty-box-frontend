@@ -1,10 +1,10 @@
-import React from 'react';
+import React from "react";
 
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  //Link 
+  Route
+  //Link
 } from "react-router-dom";
 
 import CategoryForm from "./containers/CategoryForm.js";
@@ -14,22 +14,17 @@ import Nav from "./components/Nav";
 import ProductShowContainer from "./containers/ProductShowContainer";
 
 function App() {
-  
   return (
     <div className='App'>
       <h1>Beauty-Inventory-App</h1>
       <Router>
         <Nav />
         <Switch>
-          
           <Route exact path='/'>
             <ProductListContainer />
           </Route>
 
-          <Route path='/products/:id'>
-            <ProductShowContainer />
-            Product List 
-          </Route>
+          <Route exact path='/products/:id' component={ProductShowContainer} />
 
           <Route path='/products/new' component={ProductForm}></Route>
 
@@ -52,7 +47,6 @@ function App() {
       </Router>
     </div>
   );
-  
 }
 export default App;
 
