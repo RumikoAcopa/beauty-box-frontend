@@ -50,7 +50,7 @@ export const fetchProductId = (productId) => {
 
 export const createProduct = (formData) => {
   return (dispatch) => {
-    return fetch('http://localhost:3001/products', {
+    return fetch('http://localhost:3001/products/new', {
       method: 'POST',
       headers: {
         "Accept": "application/json",
@@ -60,8 +60,7 @@ export const createProduct = (formData) => {
     })
         .then(res => {
           if (res.ok) {
-            return
-            res.json()
+            return res.json()
           } else {
             return res.json().then(errors => Promise.reject(errors))
           }
