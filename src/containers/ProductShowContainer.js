@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchProductId } from "../actions/products";
 
@@ -12,45 +12,35 @@ class ProductShowContainer extends Component {
 
     const productId = this.props.match.params.productId;
     this.props.dispatchFetchProduct(productId);
-
-
-    fetch(`http://localhost:3001/products/${productId}`)
-      .then((res) => res.json())
-      .then(({ product, categories }) => {
-        this.setState({
-          product,
-          categories,
-          loading: false
-        })
-      });
   }
-
+    
   render() {
-    if (this.props.loadingState !== 'successful') { 
-    return <div>Loading</div>
+    if (this.props.loadingState !== 'successful') {
+      <div>Loading</div>
     }
-      return (
-        <section className='Product_Show_Container max-w-6xl w-11/12 mx-auto mt-16'>
-          <h1 className='Product_Show_H1 text-3xl font-bold text-center'>
-            {this.props.product.name}
-          </h1>
-          <p className='my-2'>
-            <Link to={`/products/${this.props.product.id}/category/new`}>
-              Add a Category
+    return (
+      
+      <section className='Product_Show_Container max-w-6xl w-11/12 mx-auto mt-16'>
+        <h1 className='Product_Show_H1 text-3xl font-bold text-center'>
+          {this.props.product.name}
+          {this.props.product.quantity}
+          {this.props.product.details}
+        </h1>
+        <p className='my-2'>
+          <Link to={`/products/${this.props.product.id}/category/new`}>
+            Add a Category
             </Link>
-          </p>
-          <div className='Product_Show_Div grid grid-cols-3'>
-            {this.props.categories.map((category) => (
-              <figure>
-                <h2>{category.name}</h2>
+        </p>
+        <div className='Product_Show_Div grid grid-cols-3'>
+          {this.props.categories.map(category => <h2>{category.name}</h2>)}
                 
-              </figure>
-            ))}
-          </div>
-        </section>
-      );
-
-  }
+            
+            
+        </div>
+      </section>
+    );
+  }  
+  
 }
 
 const mapStateToProps = (state, { match }) => {
