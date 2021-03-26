@@ -1,17 +1,17 @@
 import React from "react";
-
 import {
   BrowserRouter as Router,
   Switch,
-  Route
-  //Link
+  Route,
+  NavLink
 } from "react-router-dom";
 
-import CategoryForm from "./containers/CategoryForm.js";
+//import CategoryForm from "./containers/CategoryForm.js";
 import ProductForm from "./containers/ProductForm.js";
 import ProductListContainer from "./containers/ProductListContainer.js";
+import ProductDetail from "./containers/ProductDetail.js";
 import Nav from "./components/Nav";
-import ProductShowContainer from "./containers/ProductShowContainer";
+import Footer from "./components/Footer.js";
 
 function App() {
   return (
@@ -20,46 +20,26 @@ function App() {
       <Router>
         <Nav />
         <Switch>
-          <Route exact path='/'>
+          <Route exact path='/products'>
             <ProductListContainer />
           </Route>
+          <Route path='/products/new' component={ProductForm} />
 
-          <Route exact path='/products/:id' component={ProductShowContainer} />
-
-          <Route path='/products/new' component={ProductForm}></Route>
-
-          {/* <Route path='/products/show'>
-            <ProductList />
-            Product List
-          </Route> */}
-
-          <Route
-            path='/products/:productId/categories/new'
-            component={ProductListContainer}
-          />
-
-          <Route path='/categories' component={CategoryForm}>
-            New Category
-          </Route>
-
-          <Route path='/categories/id'>Category List</Route>
+          <Route exact path='/products/:id' component={ProductDetail} />
         </Switch>
+        <Footer />
       </Router>
     </div>
   );
 }
 export default App;
 
-// const fetchedInventory = [
-//   { id: 1, type: "add", quantity: 1, product: fetchedProducts[0] },
-//   { id: 2, type: "remove", quantity: -20, product: fetchedProducts[0] },
-//   { id: 3, type: "add", quantity: 10, product: fetchedProducts[1] },
-//   { id: 4, type: "remove", quantity: -5, product: fetchedProducts[1] }
-// ];
+/* <Route
+            path='/products/:productId/categories/new'
+            component={ProductListContainer}
+          />
+          <Route path='/categories' component={CategoryForm}>
+            New Category
+          </Route>
 
-// class App extends React.Component {
-//   state = {
-//     fetchedProducts: [],
-//     fetchedInventory,
-//     count: 0
-//   };
+          <Route path='/categories/id'>Category List</Route> */
