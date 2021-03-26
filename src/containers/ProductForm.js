@@ -46,7 +46,9 @@ class ProductForm extends Component {
             onChange={this.handleChange}
             value={this.state.name}
             placeholder='name'
-            className='w-full boder p-4 my-4'
+            className={`border-double border-2 border-pink-200 w-full p-4 mb-4 ${
+              this.state.errors.name && "border-red-400"
+            }`}
           />
 
           <input
@@ -55,7 +57,9 @@ class ProductForm extends Component {
             onChange={this.handleChange}
             value={this.state.quantity}
             placeholder='quantity'
-            className='w-full boder p-4 my-4'
+            className={`border-double border-2 border-pink-200 w-full p-4 mb-4 ${
+              this.state.errors.name && "border-red-400"
+            }`}
           />
 
           <input
@@ -63,8 +67,10 @@ class ProductForm extends Component {
             name='details'
             onChange={this.handleChange}
             value={this.state.details}
-            placeholder='details'
-            className={`w-full border-2 p-4 mb-4 ${this.state.errors.name && 'border-red-400'}`}
+            placeholder='category'
+            className={`border-double border-2 border-pink-200 w-full p-4 mb-4 ${
+              this.state.errors.name && "border-red-400"
+            }`}
           />
         </fieldset>
         <button
