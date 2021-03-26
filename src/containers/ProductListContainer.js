@@ -16,7 +16,7 @@ class ProductListContainer extends Component {
       return null;
     }
     return (
-      <section className='max-w-6xlmx-auto   mt-16'>
+      <section className='max-w-6xl   mt-16'>
         {this.props.loadingState ==='inProgress' ? (
           "loading spinner"
         ) : (
