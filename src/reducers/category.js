@@ -1,6 +1,7 @@
 import {
   SUCCESS_LOADING_PRODUCT_CATEGORIES,
-  START_LOADING_PRODUCT
+  START_LOADING_PRODUCT,
+  SUCCESSFULLY_CREATED_CATEGORIES
 }  from '../actions'
 
 const initialState = {
@@ -29,6 +30,12 @@ export default function categoryReducer(state = initialState, action) {
             .concat(action.payload.categories)
         ]
       };
+    
+    case SUCCESSFULLY_CREATED_CATEGORIES:
+      return {
+        ...state,
+        list: state.list.concat(action.payload)
+      }
     default:
       return state
   }
