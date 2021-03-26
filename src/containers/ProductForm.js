@@ -37,7 +37,7 @@ class ProductForm extends Component {
         <fieldset>
           <p className='Error h-8 text-red-400'>{this.state.errors.name}</p>
           <h1 className='w-full p-4 bg-blue-300 mt-4 text-center text-3xl font-semibold mb-2'>
-            New Product
+            Add A New Product
           </h1>
 
           <input
