@@ -1,13 +1,13 @@
 import React from "react";
-import ListedProducts from "../components/ListedProducts";
+import ProductListItem from "./ProductListItem";
 
 const ProductList = ({ products }) => {
   return (
     <>
-      <h1 className='text-3xl'>Product List</h1>
+      <h1 className='text-3xl mx-80'>Product List</h1>
       <ul>
         {products.map((product) => (
-          <ListedProducts key={product.id} product={product} />
+          <ProductListItem key={product.id} product={product} />
         ))}
       </ul>
     </>
