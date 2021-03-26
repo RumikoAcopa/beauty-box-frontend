@@ -3,6 +3,8 @@ import { NavLink } from "react-router-dom";
 
 function Nav() {
   return (
+
+       
     <nav className='text-center bg-blue-900 text-yellow-100 p-4'>
 
       <NavLink
