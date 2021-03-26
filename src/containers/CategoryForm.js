@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-export default class GroupFormContainer extends Component {
+export default class CategoryForm extends Component {
   state = {
     name: ""
   };
@@ -22,7 +22,7 @@ export default class GroupFormContainer extends Component {
       body: JSON.stringify({ category: this.state })
     })
       .then((res) => res.json())
-      .then((productJson) => {
+      .then((categoryJson) => {
         this.props.history.push("/");
       });
   };
