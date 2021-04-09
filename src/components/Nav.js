@@ -29,16 +29,3 @@ function Nav() {
   );
 }
 export default Nav;
-
-
-
-      {
-        /* <NavLink
-        className='inline-block px-4 py-2'
-        activeClassName='text-yellow-300'
-        exact
-        to='/categories/new'
-      >
-        New Category
-      </NavLink> */
-      }

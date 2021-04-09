@@ -6,12 +6,13 @@ import {
   NavLink
 } from "react-router-dom";
 
-//import CategoryForm from "./containers/CategoryForm.js";
 import ProductForm from "./containers/ProductForm.js";
 import ProductListContainer from "./containers/ProductListContainer.js";
 import ProductDetail from "./containers/ProductDetail.js";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer.js";
+
+
 
 function App() {
   return (
@@ -34,12 +35,4 @@ function App() {
 }
 export default App;
 
-/* <Route
-            path='/products/:productId/categories/new'
-            component={ProductListContainer}
-          />
-          <Route path='/categories' component={CategoryForm}>
-            New Category
-          </Route>
 
-          <Route path='/categories/id'>Category List</Route> */
