@@ -10,7 +10,7 @@ const ProductListItem = ({ product }) => {
       <Link to={`/products/${product.id}`}>
         <strong>Name:</strong> {product.name}{" "}
       </Link>
-
+      
     </li>
   );
 };
