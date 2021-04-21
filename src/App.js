@@ -7,10 +7,11 @@ import {
 } from "react-router-dom";
 
 import ProductForm from "./containers/ProductForm.js";
-import ProductListContainer from "./containers/ProductListContainer.js";
+import ProductIndexContainer from "./containers/ProductIndexContainer.js";
 import ProductDetail from "./containers/ProductDetail.js";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer.js";
+import Button from "./components/Button.js";
 
 
 
@@ -22,7 +23,8 @@ function App() {
         <Nav />
         <Switch>
           <Route exact path='/products'>
-            <ProductListContainer />
+            <ProductIndexContainer />
+            <Button />
           </Route>
           <Route path='/products/new' component={ProductForm} />
 
