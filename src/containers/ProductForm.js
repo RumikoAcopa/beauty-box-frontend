@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import {createProduct} from "../actions/products"
+import { createProduct } from "../actions/products";
 class ProductForm extends Component {
   state = {
     name: "",
     quantity: "",
     details: "",
-    errors: ""
+    errors: {}
   };
 
   handleChange = (e) => {
@@ -18,14 +18,14 @@ class ProductForm extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.dispatchCreateProduct(this.state)
-      .then(productJson => {
+      .then((productJson) => {
         this.props.history.push("/products");
-    })
-    .catch(errors => {
-      this.setState({
-        errors
       })
-    })
+      .catch((errors) => {
+        this.setState({
+          errors
+        });
+      });
   };
 
   render() {
@@ -85,12 +85,11 @@ class ProductForm extends Component {
   }
 }
 
-
 const mapDispatchToProps = (dispatch) => {
   return {
     dispatchCreateProduct: (formData) => dispatch(createProduct(formData))
-  }
-}
+  };
+};
 
 export default connect(null, mapDispatchToProps)(ProductForm);
 
