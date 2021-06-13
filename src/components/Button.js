@@ -6,10 +6,6 @@ class Button extends Component {
     counter: 0
   };
 
-  // increaseCounter = () => {
-  //   this.setState({ counter: this.state.counter + 1 })
-  // }
-
   handleOnChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
@@ -24,7 +20,6 @@ class Button extends Component {
         <input
           type='text'
           name='name'
-          // onChange={this.handleChange}
           value={this.state.name}
           onChange={this.handleOnChange}
           placeholder='name'
