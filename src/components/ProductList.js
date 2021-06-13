@@ -1,7 +1,6 @@
 import React from "react";
 import ProductListItem from "./ProductListItem";
 
-
 const ProductList = ({ products }) => {
   return (
     <>
@@ -11,7 +10,6 @@ const ProductList = ({ products }) => {
           <ProductListItem key={product.id} product={product} />
         ))}
       </ul>
-      
     </>
   );
 };

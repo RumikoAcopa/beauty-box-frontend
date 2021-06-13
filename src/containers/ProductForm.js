@@ -17,7 +17,8 @@ class ProductForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.dispatchCreateProduct(this.state)
+    this.props
+      .dispatchCreateProduct(this.state)
       .then((productJson) => {
         this.props.history.push("/products");
       })
@@ -92,4 +93,3 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(null, mapDispatchToProps)(ProductForm);
-
