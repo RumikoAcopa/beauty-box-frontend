@@ -1,22 +1,20 @@
 import { START_LOADING_PRODUCTS, SUCCESS_LOADING_PRODUCTS} from "./index";
 import{START_LOADING_PRODUCT, SUCCESS_LOADING_PRODUCT} from "./index";
 import{SUCCESSFULLY_CREATED_PRODUCT} from "./index";
-import { SUCCESS_LOADING_PRODUCT_CATEGORIES} from "./index";
-
-
+//import { SUCCESS_LOADING_PRODUCT_CATEGORIES} from "./index";
 
 
 export const fetchProducts = () => {
   return (dispatch) => {
     dispatch({ type: START_LOADING_PRODUCTS })
-    fetch(`http://localhost:3001/products`)   
+    fetch(`http://localhost:3001/products`)
       .then((res) => res.json())
       .then((productsJson) => {
-        dispatch({   
+        dispatch({
           type: SUCCESS_LOADING_PRODUCTS,
           payload: productsJson
         });
-      })
+      }); 
   };
 };
 
